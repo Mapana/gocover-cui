@@ -10,8 +10,7 @@ import (
 	"io"
 	"io/ioutil"
 	"math"
-	"os"
-	"time"
+		"time"
 )
 
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L24
@@ -131,8 +130,7 @@ func (cui *GoCoverCui) cuiView(files []*templateFile) error {
 				return err
 			}
 		case <-time.After(time.Second * 10):
-			fmt.Fprintln(os.Stderr, "\033[0;32mgenerate cui timeout 10 seconds")
-			os.Exit(1)
+			return fmt.Errorf("\033[0;32mgenerate cui timeout 10 seconds")
 		}
 
 		// generate select view for cover file

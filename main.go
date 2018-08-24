@@ -44,7 +44,8 @@ func main() {
 	}
 
 	if err := cuiOutput(profile); err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
 	}
 }
 
