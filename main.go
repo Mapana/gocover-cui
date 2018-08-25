@@ -12,7 +12,7 @@ Given a coverage profile produced by 'go test':
 	   go test -coverprofile=c.out
 
 Open a terminal ui  displaying annotated source code:
-       goconver-cui -cui=c.out
+       goconver-cui -f=c.out
 `
 
 func usage() {
