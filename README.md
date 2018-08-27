@@ -1,8 +1,8 @@
 # gocover-cui
 
-模拟 go tool cover -html=c.out -o coverage.html 的显示效果显示到Terminal
+Reference go tool cover -html=c.out -o coverage.html display it to the terminal
 
-比如docker中使用时，我无法显示html，可以尝试显示Terminal UI
+for example when using in docker, I can't display html, I can try to display the terminal UI.
 
     gocover-cui -cui c.out
 
