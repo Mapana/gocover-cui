@@ -3,7 +3,7 @@
 模拟 go tool cover -html=c.out -o coverage.html 的显示效果显示到Terminal
 比如docker中使用时，我无法显示html，可以尝试显示Terminal UI
 
-    gocover-cui -f c.out
+    gocover-cui -cui c.out
 
 ## Install
 ##### go get

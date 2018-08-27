@@ -12,7 +12,7 @@ Given a coverage profile produced by 'go test':
 	   go test -coverprofile=c.out
 
 Open a terminal ui  displaying annotated source code:
-       goconver-cui -f=c.out
+       goconver-cui -cui=c.out
 `
 
 func usage() {
@@ -23,9 +23,9 @@ func usage() {
 	os.Exit(2)
 }
 
-var filePath = flag.String("f", "", "generate terminal ui representation of coverage profile")
+var filePath = flag.String("cui", "", "generate terminal ui representation of coverage profile")
 
-var profile string // The profile to read; the value of -f
+var profile string // The profile to read; the value of -cui
 
 func main() {
 	flag.Usage = usage
