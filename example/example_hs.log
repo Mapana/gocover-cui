@@ -1,0 +1,16 @@
+=== RUN   TestSUNHs
+=== RUN   TestSUNHs/group
+=== RUN   TestSUNHs/group/Test_1+1
+[0;33mcalculate sun([1 1])
+=== RUN   TestSUNHs/group/Test_100+1000
+[0;33mcalculate sun([100 1000])
+=== RUN   TestSUNHs/group/Test_valid_No_parameters
+=== RUN   TestSUNHs/group/Test_valid_One_parameters
+--- PASS: TestSUNHs (0.00s)
+    --- PASS: TestSUNHs/group (0.00s)
+        --- PASS: TestSUNHs/group/Test_1+1 (0.00s)
+        --- PASS: TestSUNHs/group/Test_100+1000 (0.00s)
+        --- PASS: TestSUNHs/group/Test_valid_No_parameters (0.00s)
+        --- PASS: TestSUNHs/group/Test_valid_One_parameters (0.00s)
+PASS
+ok  	github.com/Mapana/gocover-cui/example	0.005s

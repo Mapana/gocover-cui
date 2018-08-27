@@ -1,0 +1,12 @@
+=== RUN   TestSUNLs
+=== RUN   TestSUNLs/group
+=== RUN   TestSUNLs/group/Test_1+1
+[0;33mcalculate sun([1 1])
+=== RUN   TestSUNLs/group/Test_100+1000
+[0;33mcalculate sun([100 1000])
+--- PASS: TestSUNLs (0.00s)
+    --- PASS: TestSUNLs/group (0.00s)
+        --- PASS: TestSUNLs/group/Test_1+1 (0.00s)
+        --- PASS: TestSUNLs/group/Test_100+1000 (0.00s)
+PASS
+ok  	github.com/Mapana/gocover-cui/example	0.004s

@@ -15,5 +15,5 @@
     go install
 
 ## Plan
-1. support log display
+1. support log display [x]
 2. add keyboard prompt help

@@ -7,6 +7,7 @@ func SUN(a ...int) (int, error) {
 		return 0, fmt.Errorf("at least two numbers")
 	}
 
+	fmt.Printf("\033[0;33mcalculate sun(%v)\n", a)
 	return sun(a...), nil
 }
 
