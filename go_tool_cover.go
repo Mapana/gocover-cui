@@ -1,17 +1,17 @@
 package main
 
 import (
-	"golang.org/x/tools/cover"
-	"path/filepath"
-		"fmt"
-	"strings"
-	"path"
-	"errors"
-	"runtime"
-	"os/exec"
 	"bytes"
-	"io"
 	"encoding/json"
+	"errors"
+	"fmt"
+	"golang.org/x/tools/cover"
+	"io"
+	"os/exec"
+	"path"
+	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L96

@@ -10,7 +10,7 @@ import (
 	"io"
 	"io/ioutil"
 	"math"
-		"time"
+	"time"
 )
 
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L24
@@ -64,6 +64,7 @@ func cuiOutput(profile string) error {
 	}
 	return cui.Application.SetRoot(cui.Main.Flex, true).SetFocus(cui.Main.Top).Run()
 }
+
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L112
 //
 // imitate
@@ -116,8 +117,6 @@ func (cui *GoCoverCui) cuiView(files []*templateFile) error {
 					}
 				}).SetRegions(true).SetBorder(true).SetTitle(f.Name)
 
-			fmt.Println(f.Name)
-
 			if _, err := fmt.Fprint(tview.ANSIWriter(tv), f.Body); err != nil {
 				ch <- err
 			}
@@ -138,7 +137,6 @@ func (cui *GoCoverCui) cuiView(files []*templateFile) error {
 			item.AddOption(f.Name, func() {
 				cui.Main.Pages.SwitchToPage(f.Name)
 			}).SetFieldWidth(len(f.Name) + 10)
-			fmt.Println(f.Name)
 		}(f)
 	}
 

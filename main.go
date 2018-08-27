@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-		"os"
+	"os"
 )
 
 const usageMessage = "" +
@@ -51,8 +51,6 @@ func main() {
 
 func parseFlags() error {
 	profile = *filePath
-
-	fmt.Println(flag.NArg(), profile)
 
 	if profile == "" {
 		return fmt.Errorf("missing source file")
