@@ -16,3 +16,4 @@
 
 ## Plan
 1. support log display
+2. add keyboard prompt help
