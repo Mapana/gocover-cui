@@ -7,7 +7,7 @@
 
 ## Install
 ##### go get
-    go github.com/Mapana/gocover-cui
+    go get github.com/Mapana/gocover-cui
 
 ##### git
     git https://github.com/Mapana/gocover-cui.git
