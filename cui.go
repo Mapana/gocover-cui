@@ -11,7 +11,7 @@ import (
 	"io/ioutil"
 	"math"
 	"time"
-	)
+)
 
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L24
 //
@@ -70,6 +70,7 @@ func cuiOutput(profile string, logfile string) error {
 			tview.NewFlex(),
 			tview.NewFlex(),
 			tview.NewPages(),
+			tview.NewFlex(),
 		},
 	}
 	if err := cui.view(&cuiData, logData); err != nil {
@@ -114,7 +115,7 @@ func cuiGen(w io.Writer, src []byte, boundaries []cover.Boundary) error {
 
 func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 	rowView := tview.NewFlex().SetDirection(tview.FlexRow)
-	item := tview.NewDropDown().SetLabel("Select File: ").SetCurrentOption(0)
+	item := tview.NewDropDown().SetLabel(" Select File: ").SetCurrentOption(0)
 
 	// generate log ui
 	if len(logData) > 0 {
@@ -130,35 +131,59 @@ func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 		}
 	}
 
+	// help view
+	helpView, err := cui.helpView()
+	if err != nil {
+		return err
+	}
+	rowView.AddItem(helpView, 4, 0, false)
+
 	// top view
-	cui.Main.Top.SetBorder(true).SetTitle("Cover Files").SetTitleAlign(tview.AlignCenter)
+	cui.Main.Top.SetBorder(true).SetTitle(" Cover Files ").SetTitleAlign(tview.AlignCenter)
 	item.SetDoneFunc(func(key tcell.Key) {
 		if key == tcell.KeyTAB {
 			cui.SetFocus(cui.Main.Pages)
 		}
 	})
-	cui.Main.Top.AddItem(item, 200, 0, true)
+	cui.Main.Top.AddItem(item, 0, 3, true)
 	for k, v := range statusMap {
-		cui.Main.Top.AddItem(statusColorGen(fmt.Sprintf("%s%s", v, k)), 20, 0, false)
+		cui.Main.Top.AddItem(statusColorGen(fmt.Sprintf("%s%s", v, k)), 0, 1, false)
 	}
 	rowView.AddItem(cui.Main.Top, 3, 1, false)
 
 	// pages view
 	_, showPage := item.GetCurrentOption()
 	cui.Main.Pages.SwitchToPage(showPage)
-	rowView.AddItem(cui.Main.Pages, 0, 3, false)
+	rowView.AddItem(cui.Main.Pages, 0, 1, false)
 
 	// main view
-	cui.Main.AddItem(rowView, 0, 2, false)
+	cui.Main.AddItem(rowView, 0, 1, false)
 
 	return nil
+}
+
+func (cui *GoCoverCui) helpView() (*tview.Flex, error) {
+	var proportion = 1
+
+	for i, data := range helpData {
+		tv := tview.NewTextView()
+		tv.SetDynamicColors(true).SetWrap(true).SetScrollable(true)
+		if _, err := fmt.Fprint(tview.ANSIWriter(tv), data); err != nil {
+			return cui.Main.Help, err
+		}
+		if i == len(helpData)-1 {
+			proportion = 2
+		}
+		cui.Main.Help.AddItem(tv, 0, proportion, false)
+	}
+	return cui.Main.Help, nil
 }
 
 func (cui *GoCoverCui) logView(logData []byte, item *tview.DropDown) error {
 	// new select option
 	item.AddOption(logger, func() {
 		cui.Main.Pages.SwitchToPage(logger)
-	}).SetFieldWidth(len(logger) + 10)
+	}).SetFieldWidth(len(logger) + 5)
 
 	// new data view
 	tv, err := dataViewGen(logger, string(logData), func(key tcell.Key) {
@@ -206,7 +231,7 @@ func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) erro
 		go func(f *templateFile) {
 			item.AddOption(f.Name, func() {
 				cui.Main.Pages.SwitchToPage(f.Name)
-			}).SetFieldWidth(len(f.Name) + 10)
+			}).SetFieldWidth(len(f.Name) + 5)
 		}(f)
 	}
 
@@ -215,8 +240,8 @@ func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) erro
 
 func dataViewGen(name string, data string, handler func(key tcell.Key)) (*tview.TextView, error) {
 	tv := tview.NewTextView()
-	tv.SetDynamicColors(true).SetWrap(true).SetScrollable(true).
-		SetDoneFunc(handler).SetRegions(true).SetBorder(true).SetTitle(name)
+	tv.SetDynamicColors(true).SetWrap(true).SetScrollable(true).SetDoneFunc(handler).
+		SetRegions(true).SetBorder(true).SetTitle(fmt.Sprintf(" Data View: [ %s ] ", name))
 
 	if _, err := fmt.Fprint(tview.ANSIWriter(tv), data); err != nil {
 		return nil, err
@@ -242,14 +267,28 @@ type MainView struct {
 	*tview.Flex
 	Top   *tview.Flex
 	Pages *tview.Pages
+	Help  *tview.Flex
 }
 
-var statusMap = map[string]string{"not tracked": defaultCov, "not covered": cov0, "covered": cov8}
+var (
+	statusMap = map[string]string{"not tracked": defaultCov, "not covered": cov0, "covered": cov8}
+	helpData  = []string{
+		`[ [yellow::b]global keyboard [white]]
+- [green::b]TAB[white]: switch focus in "Select File" or "Data View"`,
+		`[ [yellow::b]"Select File" keyboard [white]]
+[green::b]0-9、a-Z、↑、↓、ENTER[white] or other: ctivation option
+[green::b]↑ [white]or [green::b]↓[white]: switch the option
+[green::b]ENTER[white]: determine the choice`,
+		`[ [yellow::b]Data View keyboard [white]]
+[green::b]↑ [white]or [green::b]k[white]: move up                            | [green::b]g [white]or [green::b]home[white]: move to the top
+[green::b]↓ [white]or [green::b]j[white]: move down                          | [green::b]G [white]or [green::b]end[white]: move to the bottom
+[green::b]CTRL [white]+ [green::b]F[white] or [green::b]PAGE UP[white]: move down by one page | [green::b]CTRL [white]+ [green::b]B[white] or [green::b]PAGE DOWN[white]: move up by one page`,
+	}
+)
 
 const (
 	defaultCov = "\033[0;37m"
 	cov0       = "\033[0;31m"
 	cov8       = "\033[0;32m"
-
-	logger = "logger"
+	logger     = "logger"
 )

@@ -34,4 +34,4 @@ gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
 
 ## Plan
 - [x] support log display
-- [ ] add keyboard prompt help
+- [x] add keyboard prompt help
