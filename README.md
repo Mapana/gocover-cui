@@ -14,21 +14,17 @@ go get github.com/Mapana/gocover-cui
 
 ##### git
 ``` bash
-git https://github.com/Mapana/gocover-cui.git
+git clone https://github.com/Mapana/gocover-cui.git
 cd gocover-cui
 go install
 ```
 
 ## Example
 ``` bash
-cd example
+cd $GOPATH/src/github.com/Mapana/gocover-cui
 
-go test -run TestSUNLs -coverprofile=example_ls.out
-go test -v -run TestSUNLs > example_ls.log
 gocover-cui -cui=example/example_ls.out -log=example/example_ls.log # Can run -cui or -log separately
 
-go test -run TestSUHs -coverprofile=example_hs.out
-go test -v -run TestSUNHs > example_hs.log
 gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
 ```
 
