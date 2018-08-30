@@ -7,17 +7,22 @@ for example when using in docker, I can't display html, I can try to display the
     gocover-cui -cui c.out
 
 ## Install
-##### go get
+#### go get
 ``` bash
 go get github.com/Mapana/gocover-cui
 ```
 
-##### git
+#### git
 ``` bash
 git clone https://github.com/Mapana/gocover-cui.git
 cd gocover-cui
 go install
 ```
+
+## Key Help
+branch and manuals are provided here
+- [branch](https://github.com/Mapana/gocover-cui/tree/key-help)
+- [manuals](https://github.com/Mapana/gocover-cui/wiki)
 
 ## Example
 ``` bash
@@ -39,4 +44,4 @@ gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
 
 ## Plan
 - [x] support log display
-- [ ] add keyboard prompt help
+- [x] add keyboard prompt help
