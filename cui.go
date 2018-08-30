@@ -115,7 +115,7 @@ func cuiGen(w io.Writer, src []byte, boundaries []cover.Boundary) error {
 func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 	var showPage string
 	rowView := tview.NewFlex().SetDirection(tview.FlexRow)
-	item := tview.NewDropDown().SetLabel("Select File: ").SetCurrentOption(0)
+	item := tview.NewDropDown().SetLabel(" Select File: ").SetCurrentOption(0)
 
 	// generate log ui
 	if len(logData) > 0 {
@@ -136,24 +136,24 @@ func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 	}
 
 	// top view
-	cui.Main.Top.SetBorder(true).SetTitle("Cover Files").SetTitleAlign(tview.AlignCenter)
+	cui.Main.Top.SetBorder(true).SetTitle(" Cover Files ").SetTitleAlign(tview.AlignCenter)
 	item.SetDoneFunc(func(key tcell.Key) {
 		if key == tcell.KeyTAB {
 			cui.SetFocus(cui.Main.Pages)
 		}
 	})
-	cui.Main.Top.AddItem(item, 200, 0, true)
+	cui.Main.Top.AddItem(item, 0, 3, true)
 	for k, v := range statusMap {
-		cui.Main.Top.AddItem(statusColorGen(fmt.Sprintf("%s%s", v, k)), 20, 0, false)
+		cui.Main.Top.AddItem(statusColorGen(fmt.Sprintf("%s%s", v, k)), 0, 1, false)
 	}
 	rowView.AddItem(cui.Main.Top, 3, 1, false)
 
 	// pages view
 	cui.Main.Pages.SwitchToPage(showPage)
-	rowView.AddItem(cui.Main.Pages, 0, 3, false)
+	rowView.AddItem(cui.Main.Pages, 0, 1, false)
 
 	// main view
-	cui.Main.AddItem(rowView, 0, 2, false)
+	cui.Main.AddItem(rowView, 0, 1, false)
 
 	return nil
 }
@@ -180,7 +180,7 @@ func (cui *GoCoverCui) logView(logData []byte, item *tview.DropDown) error {
 
 func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) error {
 	for _, f := range files {
-		ch := make(chan error, 10)
+		ch := make(chan error)
 		// generate main view for cover file
 		go func(f *templateFile, ch chan error) {
 			defer close(ch)
@@ -219,8 +219,8 @@ func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) erro
 
 func dataViewGen(name string, data string, handler func(key tcell.Key)) (*tview.TextView, error) {
 	tv := tview.NewTextView()
-	tv.SetDynamicColors(true).SetWrap(true).SetScrollable(true).
-		SetDoneFunc(handler).SetRegions(true).SetBorder(true).SetTitle(name)
+	tv.SetDynamicColors(true).SetWrap(true).SetScrollable(true).SetDoneFunc(handler).
+		SetRegions(true).SetBorder(true).SetTitle(fmt.Sprintf(" Data View: [ %s ] ", name))
 
 	if _, err := fmt.Fprint(tview.ANSIWriter(tv), data); err != nil {
 		return nil, err
