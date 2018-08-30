@@ -88,7 +88,6 @@ func cuiGen(w io.Writer, src []byte, boundaries []cover.Boundary) error {
 	color := defaultCov
 	dst := bufio.NewWriter(w)
 	for i := range src {
-		dst.WriteString(color)
 		for len(boundaries) > 0 && boundaries[0].Offset == i {
 			b := boundaries[0]
 			if b.Start {
@@ -109,6 +108,9 @@ func cuiGen(w io.Writer, src []byte, boundaries []cover.Boundary) error {
 			boundaries = boundaries[1:]
 		}
 		dst.WriteByte(src[i])
+		if src[i] == '\n' {
+			dst.WriteString(color)
+		}
 	}
 	return dst.Flush()
 }
