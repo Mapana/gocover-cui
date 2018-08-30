@@ -114,21 +114,26 @@ func cuiGen(w io.Writer, src []byte, boundaries []cover.Boundary) error {
 }
 
 func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
+	var showPage string
 	rowView := tview.NewFlex().SetDirection(tview.FlexRow)
 	item := tview.NewDropDown().SetLabel(" Select File: ").SetCurrentOption(0)
 
 	// generate log ui
 	if len(logData) > 0 {
-		cui.logView(logData, item)
+		err := cui.logView(logData, item)
+		if err != nil {
+			return err
+		}
+		showPage = logger
 	}
 
 	// generate cover ui
 	if cuiData != nil && len(cuiData.Files) > 0 {
 		err := cui.cuiView(cuiData.Files, item)
-
 		if err != nil {
 			return err
 		}
+		showPage = cuiData.Files[0].Name
 	}
 
 	// help view
@@ -152,7 +157,6 @@ func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 	rowView.AddItem(cui.Main.Top, 3, 1, false)
 
 	// pages view
-	_, showPage := item.GetCurrentOption()
 	cui.Main.Pages.SwitchToPage(showPage)
 	rowView.AddItem(cui.Main.Pages, 0, 1, false)
 
@@ -201,7 +205,7 @@ func (cui *GoCoverCui) logView(logData []byte, item *tview.DropDown) error {
 
 func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) error {
 	for _, f := range files {
-		ch := make(chan error, 10)
+		ch := make(chan error)
 		// generate main view for cover file
 		go func(f *templateFile, ch chan error) {
 			defer close(ch)
@@ -229,7 +233,7 @@ func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) erro
 
 		// generate select view for cover file
 		go func(f *templateFile) {
-			item.AddOption(f.Name, func() {
+			item.AddOption(fmt.Sprintf("%s  %.1f%s", f.Name, f.Coverage, "%"), func() {
 				cui.Main.Pages.SwitchToPage(f.Name)
 			}).SetFieldWidth(len(f.Name) + 5)
 		}(f)
