@@ -11,7 +11,7 @@ import (
 	"io/ioutil"
 	"math"
 	"time"
-	)
+)
 
 // https://github.com/golang/go/blob/master/src/cmd/cover/html.go#L24
 //
