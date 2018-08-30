@@ -187,7 +187,7 @@ func (cui *GoCoverCui) logView(logData []byte, item *tview.DropDown) error {
 	// new select option
 	item.AddOption(logger, func() {
 		cui.Main.Pages.SwitchToPage(logger)
-	}).SetFieldWidth(len(logger) + 5)
+	}).SetFieldWidth(len(logger) + 10)
 
 	// new data view
 	tv, err := dataViewGen(logger, string(logData), func(key tcell.Key) {
@@ -235,7 +235,7 @@ func (cui *GoCoverCui) cuiView(files []*templateFile, item *tview.DropDown) erro
 		go func(f *templateFile) {
 			item.AddOption(fmt.Sprintf("%s  %.1f%s", f.Name, f.Coverage, "%"), func() {
 				cui.Main.Pages.SwitchToPage(f.Name)
-			}).SetFieldWidth(len(f.Name) + 5)
+			}).SetFieldWidth(len(f.Name) + 10)
 		}(f)
 	}
 
