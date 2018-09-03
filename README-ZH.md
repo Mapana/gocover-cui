@@ -1,44 +1,14 @@
-# gocover-cui
+# gocover-cui - 含有按键帮助分支
+这是一个基于gocover-cui master分裂分支，为终端ui提供按键帮助。
 
-参考`go tool cover -html=c.out -o coverage.html `将结果显示在终端
-```
-gocover-cui -cui c.out
-```
+gocover-cui 介绍和入门，请转到 [master](https://github.com/Mapana/gocover-cui)
 
-## 安装
-#### go get
-``` bash
-go get github.com/Mapana/gocover-cui
-```
-
-#### git
-``` bash
-git clone https://github.com/Mapana/gocover-cui.git
-cd gocover-cui
-go install
-```
-
-## 按键帮助
-这里提供了分支和手册
-- [branch](https://github.com/Mapana/gocover-cui/tree/key-help)
-- [manuals](https://github.com/Mapana/gocover-cui/wiki)
-
-## 示例
-``` bash
-cd $GOPATH/src/github.com/Mapana/gocover-cui
-gocover-cui -cui=example/example_ls.out -log=example/example_ls.log # 可以单独运行 -cui 或 -log
-gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
-```
-
+## 图片展示
 #### 当焦点处于`Cover Files`
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-1.png)
+![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-1.png)
 
 #### 展开`Cover Files`选项
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-2.png)
+![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-2.png)
 
 #### 当焦点处于`Data View`
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-3.png)
-
-## 计划
-- [x] 支持log显示
-- [x] 增加按键帮助
+![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-3.png)

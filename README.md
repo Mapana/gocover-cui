@@ -1,7 +1,7 @@
 # gocover-cui - Hey Help
 This is a gocover-cui branch that provides key help at the terminal ui.
 
-Gocover introduction and getting started, please link to the [master](https://github.com/Mapana/gocover-cui)
+gocover-cui introduction and getting started, please link to the [master](https://github.com/Mapana/gocover-cui)
 
 ## Picture collection
 #### Focus in `Cover Files`
