@@ -1,4 +1,5 @@
 # gocover-cui
+en | [中文](https://github.com/Mapana/gocover-cui/blob/master/README-ZH.md)
 
 参考`go tool cover -html=c.out -o coverage.html `将结果显示在终端
 ```
