@@ -1,4 +1,6 @@
 # gocover-cui - 含有按键帮助分支
+en | [中文](https://github.com/Mapana/gocover-cui/blob/key-help/README-ZH.md)
+
 这是一个基于gocover-cui master分裂分支，为终端ui提供按键帮助。
 
 gocover-cui 介绍和入门，请转到 [master](https://github.com/Mapana/gocover-cui)
