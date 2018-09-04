@@ -1,4 +1,5 @@
 # gocover-cui
+en | [中文](https://github.com/Mapana/gocover-cui/blob/master/README-ZH.md)
 
 Reference go tool cover -html=c.out -o coverage.html display it to the terminal
 
