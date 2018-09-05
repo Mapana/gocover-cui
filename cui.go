@@ -134,7 +134,9 @@ func (cui *GoCoverCui) view(cuiData *templateData, logData []byte) error {
 		if err != nil {
 			return err
 		}
-		showPage = cuiData.Files[0].Name
+		if showPage == "" {
+			showPage = cuiData.Files[0].Name
+		}
 	}
 
 	// top view
