@@ -5,6 +5,9 @@
 gocover-cui -cui c.out
 ```
 
+## 须知
+**终端主题或bash颜色将影响最终的`gocover-cui`显示颜色**
+
 ## 安装
 #### go get
 ``` bash

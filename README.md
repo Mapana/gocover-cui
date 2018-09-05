@@ -1,11 +1,14 @@
 # gocover-cui
 en | [中文](https://github.com/Mapana/gocover-cui/blob/master/README-ZH.md)
 
-Reference go tool cover -html=c.out -o coverage.html display it to the terminal
+Reference `go tool cover -html=c.out -o coverage.html` display it to the terminal
 
 for example when using in docker, I can't display html, I can try to display the terminal UI.
 
     gocover-cui -cui c.out
+
+## Before use
+**Terminal theme or bash color will affect the final `gocover-cui` display color**
 
 ## Install
 #### go get
@@ -33,6 +36,8 @@ gocover-cui -cui=example/example_ls.out -log=example/example_ls.log # Can run -c
 
 gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
 ```
+
+##
 
 #### Focus in `Cover Files`
 ![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-1.png)
