@@ -7,10 +7,10 @@ This is a `gocover-cui` branch that provides key help at the terminal ui.
 
 ## Picture collection
 #### Focus in `Cover Files`
-![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-1.png)
+![image](https://github.com/Mapana/public/blob/master/key-help-gocover-cui-1.png)
 
 #### toggle option for `Cover Files`
-![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-2.png)
+![image](https://github.com/Mapana/public/blob/master/key-help-gocover-cui-2.png)
 
 #### Focus in `Data View`
-![image](https://github.com/Mapana/gocover-cui/blob/key-help/gocover-cui-3.png)
+![image](https://github.com/Mapana/public/blob/master/key-help-gocover-cui-3.png)
