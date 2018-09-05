@@ -1,8 +1,8 @@
 # gocover-cui - 含有按键帮助分支
 
-这是一个基于gocover-cui master分裂分支，为终端ui提供按键帮助。
+这是一个基于`gocover-cui` master分裂分支，为终端ui提供按键帮助。
 
-gocover-cui 介绍和入门，请转到 [master](https://github.com/Mapana/gocover-cui)
+`gocover-cui` 介绍和入门，请转到 [master](https://github.com/Mapana/gocover-cui)
 
 ## 图片展示
 #### 当焦点处于`Cover Files`
