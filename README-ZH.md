@@ -34,13 +34,13 @@ gocover-cui -cui=example/example_hs.out -log=example/example_hs.log
 ```
 
 #### 当焦点处于`Cover Files`
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-1.png)
+![image](https://github.com/Mapana/public/blob/master/gocover-cui-1.png)
 
 #### 展开`Cover Files`选项
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-2.png)
+![image](https://github.com/Mapana/public/blob/master/gocover-cui-2.png)
 
 #### 当焦点处于`Data View`
-![image](https://github.com/Mapana/gocover-cui/blob/master/gocover-cui-3.png)
+![image](https://github.com/Mapana/public/blob/master/gocover-cui-3.png)
 
 ## 计划
 - [x] 支持log显示
